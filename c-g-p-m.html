@@ -35,8 +35,6 @@
   z-index: 9999;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive-in-park-1" tags="" position="625,250" size="100,100">&lt;div class=&quot;rpg-box&quot;&gt;
 
-&lt;audio id=&quot;typing-sfx&quot; src=&quot;./audio/typing-1.mp3&quot; preload=&quot;auto&quot;&gt;&lt;/audio&gt;
-
 (set: $typewriterText to &quot;Carlton Gardens is mostly shadows. There are lamps and stuff, but they just make more shadows. Can&#39;t see where the grass ends.
 
 &quot;)
@@ -59,17 +57,9 @@
 
       (append: ?typewriterOutput)[(print: $char)]
 
-      &lt;!-- 🔊 play sound (Harlowe-safe JS injection) --&gt;
-      (set: _junk to (print: &quot;&lt;script&gt;
-        const sfx = document.getElementById(&#39;typing-sfx&#39;);
-        if (sfx) {
-          sfx.currentTime = 0;
-          sfx.play();
-        }
-      &lt;/script&gt;&quot;))
-
       (set: $typewriterPos to it + 1)
 
+      &lt;!-- ⏸ punctuation creates delay --&gt;
       (if: $char is &quot;.&quot; or $char is &quot;?&quot; or $char is &quot;!&quot;)[
         (set: $stall to 6)
       ]
