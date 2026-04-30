@@ -35,8 +35,7 @@
 
   display: flex;        
   align-items: flex-start;   
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive in park" tags="" position="625,250" size="100,100">(set: $i to 1)
-(set: $soundStarted to false)
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive in park" tags="" position="625,250" size="100,100">&lt;audio src=&quot;./audio/text-typing-sound-1.mp3&quot; autoplay loop&gt;&lt;/audio&gt;
 
 |box&gt;[
 
@@ -46,19 +45,6 @@
 &lt;!-- TEXT --&gt;
 (set: $text to &quot;Carlton Gardens is mostly shadows. There are lamps and stuff, but they just make more shadows. Can&#39;t see where the grass ends.&quot;)
 (set: $i to 1)
-
-&lt;!-- START SOUND --&gt;
-(if: not $soundStarted)[
-	(set: $soundStarted to true)
-
-	&lt;script&gt;
-	const a = document.getElementById(&quot;typingSound&quot;);
-	if (a) {
-		a.currentTime = 0;
-		a.play();
-	}
-	&lt;/script&gt;
-]
 
 &lt;!-- INITIAL CHARACTER --&gt;
 (replace: ?output)[(substring: $text, 1, 1)]
@@ -74,14 +60,6 @@
 	(else:)[
 		(stop:)
 
-		&lt;!-- STOP SOUND --&gt;
-		&lt;script&gt;
-		const a = document.getElementById(&quot;typingSound&quot;);
-		if (a) {
-			a.pause();
-			a.currentTime = 0;
-		}
-		&lt;/script&gt;
 
 		(after: 300ms)[
 			(append: ?box)[
@@ -117,9 +95,7 @@
 		]
 	]
 ]
-</tw-passagedata><tw-passagedata pid="3" name="arrive in park 3" tags="" position="875,250" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="StoryInIt" tags="" position="625,375" size="100,100">&lt;audio id=&quot;typingSound&quot; loop&gt;
-	&lt;source src=&quot;./audio/text-typing-sound-1.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
-&lt;/audio&gt;</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="3" name="arrive in park 3" tags="" position="875,250" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="StoryInIt" tags="" position="625,375" size="100,100"></tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
