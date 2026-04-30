@@ -35,20 +35,30 @@
   z-index: 9999;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive-in-park-1" tags="" position="625,250" size="100,100">&lt;div class=&quot;rpg-box&quot;&gt;
 
-&lt;audio src=&quot;./audio/typing-1.mp3&quot; autoplay loop&gt;&lt;/audio&gt;
+&lt;audio id=&quot;typingAudio&quot; src=&quot;./audio/typing-1.mp3&quot;&gt;&lt;/audio&gt;
 
-(set: $typewriterText to &quot;Carlton Gardens is mostly shadows. There are lamps and stuff, but they just make more shadows. Can&#39;t see where the grass ends.
+(set: $typewriterText to &quot;Carlton Gardens is mostly shadows. There are lamps and stuff, but they just make more shadows. Can&#39;t see where the grass ends.\n\n&quot;)
 
-&quot;)
 {
   (set: $typewriterPos to 1)
   (set: $stall to 0)
+  (set: $audioStarted to false)
 
   |typewriterOutput&gt;[]
 
-  |afterText)[[[next-&gt;arrive-in-park-3]]] 
+  |afterText)[[[next-&gt;arrive-in-park-2]]]
 
   (live: 70ms)[
+
+    &lt;!-- start audio once --&gt;
+    (if: not $audioStarted)[
+      (set: $audioStarted to true)
+      (output:)[
+        &lt;script&gt;
+          document.getElementById(&quot;typingAudio&quot;).play();
+        &lt;/script&gt;
+      ]
+    ]
 
     (if: $stall &gt; 0)[
       (set: $stall to $stall - 1)
@@ -61,7 +71,7 @@
 
       (set: $typewriterPos to it + 1)
 
-      &lt;!-- ⏸ punctuation creates delay --&gt;
+      &lt;!-- punctuation delay --&gt;
       (if: $char is &quot;.&quot; or $char is &quot;?&quot; or $char is &quot;!&quot;)[
         (set: $stall to 6)
       ]
@@ -69,7 +79,8 @@
         (set: $stall to 3)
       ]
 
-    ](else:)[
+    ]
+    (else:)[
       (set: $typewriterPos to it + 1)
 
       (if: $typewriterPos is $typewriterText&#39;s length + 8)[
