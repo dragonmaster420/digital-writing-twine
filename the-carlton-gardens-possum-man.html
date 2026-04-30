@@ -35,9 +35,7 @@
 
   display: flex;        
   align-items: flex-start;   
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive in park" tags="" position="625,250" size="100,100">&lt;audio src=&quot;./audio/text-typing-sound-1.mp3&quot; autoplay loop&gt;&lt;/audio&gt;
-
-<audio src="./audio/text-typing-sound-1.mp3" autoplay loop></audio>
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive in park" tags="" position="625,250" size="100,100">
 
 |box&gt;[
 
@@ -70,34 +68,7 @@
 		]
 	]
 ]
-]</tw-passagedata><tw-passagedata pid="2" name="arrive in park 2" tags="" position="750,250" size="100,100">|box&gt;[
-
-|output&gt;[]
-
-(set: $text to &quot;You swing your bottle of wine around as if there&#39;s something there. You throw it up to yourself, seeing how high you can chuck it. It doesn&#39;t really matter if it smashes or anything &#39;cause there&#39;s heaps more.&quot;)
-
-(set: $i to 1)
-
-(replace: ?output)[(print: (substring: $text, 1, 1))]
-
-(live: 50ms)[
-	(if: $i &lt;= $text&#39;s length)[
-		(replace: ?output)[
-			(print: (substring: $text, 1, $i))
-		]
-		(set: $i to $i + 1)
-	]
-(else:)[
-	(stop:)
-	(after: 300ms)[
-		(append: ?box)[
-
-		[[next-&gt;arrive in park 3]]
-
-		]
-	]
-]
-</tw-passagedata><tw-passagedata pid="3" name="arrive in park 3" tags="" position="875,250" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="StoryInIt" tags="" position="625,375" size="100,100"></tw-passagedata></tw-storydata>
+]</tw-passagedata><tw-passagedata pid="2" name="arrive in park 2" tags="" position="750,250" size="100,100">&lt;audio src=&quot;./audio/the-rhythm-of-the-night.mp3&quot; autoplay loop&gt;&lt;/audio&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
