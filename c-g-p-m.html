@@ -35,22 +35,16 @@
   z-index: 9999;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="arrive-in-park-1" tags="" position="625,250" size="100,100">&lt;div class=&quot;rpg-box&quot;&gt;
 
-&lt;audio id=&quot;sfx1&quot; src=&quot;./audio/typing-1.mp3&quot;&gt;&lt;/audio&gt;
-&lt;audio id=&quot;sfx2&quot; src=&quot;./audio/typing-1.mp3&quot;&gt;&lt;/audio&gt;
-&lt;audio id=&quot;sfx3&quot; src=&quot;./audio/typing-1.mp3&quot;&gt;&lt;/audio&gt;
-
 (set: $typewriterText to &quot;Carlton Gardens is mostly shadows. There are lamps and stuff, but they just make more shadows. Can&#39;t see where the grass ends.
 
 &quot;)
-
 {
   (set: $typewriterPos to 1)
   (set: $stall to 0)
-  (set: $sfxIndex to 1)
 
   |typewriterOutput&gt;[]
 
-  |afterText)[[[next-&gt;arrive-in-park-2]]]
+  |afterText)[[[next-&gt;arrive-in-park-2]]] 
 
   (live: 70ms)[
 
@@ -63,32 +57,9 @@
 
       (append: ?typewriterOutput)[(print: $char)]
 
-      &lt;!-- 🔊 cycle audio elements --&gt;
-      (if: $sfxIndex is 1)[
-        (output:)[&lt;script&gt;
-          document.getElementById(&#39;sfx1&#39;).currentTime = 0;
-          document.getElementById(&#39;sfx1&#39;).play();
-        &lt;/script&gt;]
-        (set: $sfxIndex to 2)
-      ]
-      (else-if: $sfxIndex is 2)[
-        (output:)[&lt;script&gt;
-          document.getElementById(&#39;sfx2&#39;).currentTime = 0;
-          document.getElementById(&#39;sfx2&#39;).play();
-        &lt;/script&gt;]
-        (set: $sfxIndex to 3)
-      ]
-      (else:)[
-        (output:)[&lt;script&gt;
-          document.getElementById(&#39;sfx3&#39;).currentTime = 0;
-          document.getElementById(&#39;sfx3&#39;).play();
-        &lt;/script&gt;]
-        (set: $sfxIndex to 1)
-      ]
-
       (set: $typewriterPos to it + 1)
 
-      &lt;!-- punctuation delay --&gt;
+      &lt;!-- ⏸ punctuation creates delay --&gt;
       (if: $char is &quot;.&quot; or $char is &quot;?&quot; or $char is &quot;!&quot;)[
         (set: $stall to 6)
       ]
@@ -96,8 +67,7 @@
         (set: $stall to 3)
       ]
 
-    ]
-    (else:)[
+    ](else:)[
       (set: $typewriterPos to it + 1)
 
       (if: $typewriterPos is $typewriterText&#39;s length + 8)[
